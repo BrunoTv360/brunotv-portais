@@ -1,19 +1,3 @@
-Portal: http://tvvip.tv:80
-MAC Addr: 00:1A:79:12:34:56
----
-
-Portal: http://iptvpanel.tv:80
-MAC Addr: 00:1B:63:AB:CD:EF
----
-
-Portal: http://magportal.net:80
-MAC Addr: 00:1C:42:11:22:33
----
-
-Portal: http://stalkerplayer.com:80
-MAC Addr: 00:1D:55:66:77:88
----
-
-Portal: http://iptvtestserver.com:80
-MAC Addr: 00:1E:99:AA:BB:CC
+Portal: http://esporao.mine.nu:21921/c
+MAC Addr: 00:1A:79:4B:37:69
 ---
