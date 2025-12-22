@@ -2,19 +2,19 @@ body {
     background: #000;
     color: #fff;
     font-family: Arial, sans-serif;
-    text-align: center;
+    margin: 0;
     padding: 20px;
+    text-align: center;
 }
 
 h1, h2 {
     margin-bottom: 20px;
 }
 
-#portal-list {
+#app {
     display: flex;
     flex-direction: column;
     gap: 12px;
-    margin-top: 20px;
 }
 
 button {
@@ -30,4 +30,10 @@ button {
 
 button:hover {
     background: #333;
+}
+
+video {
+    width: 100%;
+    max-width: 600px;
+    margin-top: 20px;
 }
