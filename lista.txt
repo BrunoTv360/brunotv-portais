@@ -1,42 +1,11 @@
-Portal    : http://vpn.full-keys4k.xyz:80/c/
-MAC Addr  : 00:1A:79:B5:22:A1
-Data Scan : 10-12-2025/23:21:54
-Canais    : N/A
-Hits by BrunoTv
+Portal: http://painel.tvvip.tv:80
+MAC Addr: 00:1A:79:12:34:56
+---
 
---------------------------------
-Portal    : http://p1.eu58.xyz:8080/c/
-MAC Addr  : 00:1A:79:14:6B:A0
-Data Scan : 10-12-2025/23:22:06
-Canais    : N/A
-Hits by BrunoTv
+Portal: http://tvstream.portal.com:80
+MAC Addr: 00:1B:63:AB:CD:EF
+---
 
---------------------------------
-Portal    : http://p1.eu58.xyz:8080/c/
-MAC Addr  : 00:1A:79:90:0F:A4
-Data Scan : 10-12-2025/23:22:11
-Canais    : N/A
-Hits by BrunoTv
-
---------------------------------
-Portal    : http://smare.site:80/c/
-MAC Addr  : 00:1A:79:80:0F:8C
-Data Scan : 10-12-2025/23:22:20
-Canais    : N/A
-Hits by BrunoTv
-
---------------------------------
-Portal    : http://smare.site:80/c/
-MAC Addr  : 00:1A:79:B5:18:87
-Data Scan : 10-12-2025/23:22:26
-Canais    : N/A
-Hits by BrunoTv
-
---------------------------------
-Portal    : http://kpaxletmein.com:80/c/
-MAC Addr  : 00:1A:79:81:9D:D4
-Data Scan : 10-12-2025/23:22:27
-Canais    : N/A
-Hits by BrunoTv
-
---------------------------------
+Portal: http://iptv.bruno.tv:80
+MAC Addr: 00:1C:42:11:22:33
+---
