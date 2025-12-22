@@ -1,20 +1,39 @@
-<!DOCTYPE html>
-<html lang="pt">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BrunoTV – Portais</title>
-    <link rel="stylesheet" href="style.css?v=1000">
-</head>
+body {
+    background: #000;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    text-align: center;
+}
 
-<body>
+h1, h2 {
+    margin-bottom: 20px;
+}
 
-    <div id="app">
-        <h1>BrunoTV – Portais</h1>
-        <p>A carregar...</p>
-    </div>
+#app {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
 
-    <script src="script.js?v=1000"></script>
+button {
+    background: #1e1e1e;
+    color: #fff;
+    border: 2px solid #444;
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 18px;
+    white-space: pre-line;
+    cursor: pointer;
+}
 
-</body>
-</html>
+button:hover {
+    background: #333;
+}
+
+video {
+    width: 100%;
+    max-width: 600px;
+    margin-top: 20px;
+}
