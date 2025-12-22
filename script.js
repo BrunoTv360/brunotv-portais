@@ -1,111 +1,81 @@
-
-// URL da tua lista no GitHub
+// Caminho correto para o lista.txt
 const LIST_URL = "https://raw.githubusercontent.com/BrunoTv360/brunotv-portais/main/lista.txt";
 
-// -----------------------------
-// LER LISTA DE PORTAIS
-// -----------------------------
-async function loadList() {
-    const res = await fetch(LIST_URL);
-    const text = await res.text();
-    return parseList(text);
-}
-
-function parseList(text) {
-    const lines = text.split("\n");
-    const entries = [];
-    let portal = null;
-    let mac = null;
-
-    for (let line of lines) {
-        if (line.startsWith("Portal")) portal = line.split(":")[1].trim();
-        if (line.startsWith("MAC Addr")) mac = line.split(":")[1].trim();
-        if (line.startsWith("---")) {
-            if (portal && mac) entries.push({ portal, mac });
-            portal = null;
-            mac = null;
-        }
+// Carrega o ficheiro lista.txt
+async function carregarLista() {
+    try {
+        const response = await fetch(LIST_URL + "?v=" + Date.now()); // evita cache
+        const texto = await response.text();
+        processarLista(texto);
+    } catch (erro) {
+        alert("Erro ao carregar lista: " + erro);
     }
-
-    if (portal && mac) entries.push({ portal, mac });
-    return entries;
 }
 
-// -----------------------------
-// LOGIN STALKER / MAG
-// -----------------------------
-async function loginStalker(portal, mac) {
-    const url = `${portal}/server/load.php?type=stb&action=handshake&JsHttpRequest=1-xml`;
+// Processa o conteúdo do lista.txt
+function processarLista(texto) {
+    const blocos = texto.split("---").map(b => b.trim()).filter(b => b.length > 0);
 
-    const headers = {
-        "User-Agent": "Mozilla/5.0",
-        "X-User-Agent": "Model: MAG254; Link: Ethernet",
-        "Referer": portal,
-        "Cookie": `mac=${mac}; stb_lang=en; timezone=Europe/Lisbon`
-    };
+    const lista = blocos.map(bloco => {
+        const linhas = bloco.split("\n").map(l => l.trim());
+        let portal = "";
+        let mac = "";
 
-    const res = await fetch(url, { method: "POST", headers });
-    const data = await res.json();
-    return data.js.token;
+        linhas.forEach(linha => {
+            if (linha.startsWith("Portal:")) {
+                portal = linha.replace("Portal:", "").trim();
+            }
+            if (linha.startsWith("MAC Addr:")) {
+                mac = linha.replace("MAC Addr:", "").trim();
+            }
+        });
+
+        return { portal, mac };
+    });
+
+    mostrarPortais(lista);
 }
 
-// -----------------------------
-// CATEGORIAS
-// -----------------------------
-async function getCategories(portal, token, mac) {
-    const url = `${portal}/server/load.php?type=itv&action=get_genres&JsHttpRequest=1-xml`;
+// Mostra os botões dos portais
+function mostrarPortais(lista) {
+    const div = document.getElementById("portal-list");
+    div.innerHTML = "";
 
-    const headers = {
-        "User-Agent": "Mozilla/5.0",
-        "X-User-Agent": "Model: MAG254; Link: Ethernet",
-        "Referer": portal,
-        "Cookie": `mac=${mac}; stb_lang=en; timezone=Europe/Lisbon`,
-        "Authorization": `Bearer ${token}`
-    };
-
-    const res = await fetch(url, { method: "POST", headers });
-    const data = await res.json();
-    return data.js;
-}
-
-function showCategories(categories, portal, token, mac) {
-    const app = document.getElementById("app");
-    app.innerHTML = "<h2>Categorias</h2>";
-
-    categories.forEach(cat => {
+    lista.forEach(entry => {
         const btn = document.createElement("button");
-        btn.innerText = cat.title;
-        btn.onclick = async () => {
-            const channels = await getChannels(portal, token, mac, cat.id);
-            showChannels(portal, token, mac, cat.id, channels);
-        };
-        app.appendChild(btn);
+        btn.className = "portal-btn";
+        btn.textContent = entry.portal + "\n" + entry.mac;
+
+        btn.onclick = () => testarPortal(entry.portal, entry.mac);
+
+        div.appendChild(btn);
     });
 }
 
-// -----------------------------
-// CANAIS
-// -----------------------------
-async function getChannels(portal, token, mac, categoryId) {
-    const url = `${portal}/server/load.php?type=itv&action=get_ordered_list&genre=${categoryId}&JsHttpRequest=1-xml`;
+// Testa o portal
+async function testarPortal(portal, mac) {
+    alert("A testar portal:\n" + portal + "\nMAC: " + mac);
 
-    const headers = {
-        "User-Agent": "Mozilla/5.0",
-        "X-User-Agent": "Model: MAG254; Link: Ethernet",
-        "Referer": portal,
-        "Cookie": `mac=${mac}; stb_lang=en; timezone=Europe/Lisbon`,
-        "Authorization": `Bearer ${token}`
-    };
+    try {
+        const url = portal + "/server/load.php?type=stb&action=handshake&token=&mac=" + mac;
 
-    const res = await fetch(url, { method: "POST", headers });
-    const data = await res.json();
-    return data.js.data;
+        const response = await fetch(url);
+        const texto = await response.text();
+
+        // Se o servidor devolver HTML, dá erro
+        if (texto.trim().startsWith("<")) {
+            throw new Error("O portal devolveu HTML em vez de JSON");
+        }
+
+        alert("Portal OK:\n" + texto);
+
+    } catch (erro) {
+        alert("Falha ao testar portal:\n" + portal + "\nErro: " + erro);
+    }
 }
 
-function showChannels(portal, token, mac, categoryId, channels) {
-    const app = document.getElementById("app");
-    app.innerHTML = `<h2>Canais</h2>`;
-
+// Inicia
+carregarLista();
     const backBtn = document.createElement("button");
     backBtn.innerText = "← Voltar às categorias";
     backBtn.onclick = async () => {
