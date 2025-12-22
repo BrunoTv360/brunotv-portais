@@ -1,4 +1,3 @@
-
 // Caminho correto para o lista.txt
 const LIST_URL = "https://raw.githubusercontent.com/BrunoTv360/brunotv-portais/main/lista.txt";
 
