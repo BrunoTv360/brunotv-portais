@@ -9,3 +9,11 @@ MAC Addr: 00:1B:63:AB:CD:EF
 Portal: http://iptv.bruno.tv:80
 MAC Addr: 00:1C:42:11:22:33
 ---
+
+Portal: http://streaming.exemplo.com:80
+MAC Addr: 00:1D:55:66:77:88
+---
+
+Portal: http://live.tvbraga.com:80
+MAC Addr: 00:1E:99:AA:BB:CC
+---
