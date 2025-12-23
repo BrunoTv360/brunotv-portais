@@ -1,3 +1,18 @@
 Portal: http://esporao.mine.nu:21921/c
 MAC Addr: 00:1A:79:4B:37:69
 ---
+Portal: http://sbhgoldpro.org:80/c/
+MAC Addr: 00:1A:79:BD:8A:AA
+---
+Portal: http://c2.myottes.me:80/c/
+MAC Addr: 00:1A:79:4F:01:D3
+---
+Portal: http://c2.myottes.me:80/c/
+MAC Addr: 00:1A:79:72:EB:8C
+---
+Portal: http://line.myox.me:80/c/
+MAC Addr: 00:1A:79:D5:52:98
+---
+Portal: http://line.myox.me:80/c/
+MAC Addr: 00:1A:79:BC:5B:81
+---
